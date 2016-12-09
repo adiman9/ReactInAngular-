@@ -1,0 +1,56 @@
+
+<!doctype html>
+<html>
+  <head>
+    <title>HeadSpin</title>
+    <base href="/">
+    <meta http-equiv="content-type" content="text/html; charset=UTF8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link rel="icon" href="icons/favicon.png">
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Archivo+Narrow" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,300" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet" type="text/css">
+    <%
+       if (env !== 'prod') {
+         css.forEach(function(src) {
+           var rel = 'stylesheet';
+           if (src.endsWith('less')) rel += '/less';
+    %>
+    <link rel="<%= rel %>" type="text/css" href="<%= src %>">
+    <%
+         });
+       } else {
+    %>
+    <style>
+      <%= css_string %>
+    </style>
+    <%
+       }
+    %>
+    <%
+       if (env !== 'prod') {
+         js.forEach(function(src) {
+    %>
+    <script type="text/javascript" src="<%= src %>"></script>
+    <%
+         });
+         dev_js_tags.forEach(function(tag) {
+    %>
+    <script type="<%= tag.type %>"><%= tag.code %></script>
+    <%
+         });
+       } else {
+    %>
+    <script>
+      <%= js_string %>
+    </script>
+    <%
+       }
+    %>
+  </head>
+  <body ng-cloak>
+    <div class="view" ng-view></div>
+  </body>
+</html>

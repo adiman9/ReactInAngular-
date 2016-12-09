@@ -1,0 +1,248 @@
+.new-button {
+  .noselect;
+  display: inline-block;
+  cursor: pointer;
+  padding: 4px 6px;
+  border: 1px solid;
+  border-radius: 5px;
+  box-sizing: border-box;
+
+  &.full-width {
+    width: 100%;
+    text-align: center;
+  }
+
+  &.faded-gray {
+    color: white;
+    border-color: @faded-gray;
+    background: @faded-gray;
+    &:hover {
+      background: lighten(@faded-gray, 5%);
+    }
+    &.selected, &:active {
+      background: @orange-primary-dark;
+    }
+  }
+
+  &.light-gray {
+    color: white;
+    border-color: @light-gray;
+    background: @light-gray;
+    &:hover {
+      border-color: lighten(@light-gray, 5%);
+      background: lighten(@light-gray, 5%);
+    }
+    &.selected, &:active {
+      border-color: @orange-primary-dark;
+      background: @orange-primary-dark;
+    }
+  }
+
+  &.orange {
+    color: #eee;
+    border-color: @orange-primary-dark;
+    background: @orange-primary-dark;
+    &:hover {
+      border-color: @orange-dark;
+      background: @orange-dark;
+    }
+    &.selected {
+      background: none;
+      color: @orange-primary-dark;
+      border-color: @orange-primary-dark;
+    }
+  }
+
+  &.empty-orange {
+    color: @orange-primary-dark;
+    border-color: @orange-primary-dark;
+    &:hover, &.selected {
+      color: #eee;
+      background: @orange-primary-dark;
+    }
+  }
+
+  &.empty-gray {
+    color: #ccc;
+    border-color: #ccc;
+    &:hover {
+      color: #666;
+      border-color: #666;
+    }
+  }
+
+  &.gray {
+    color: #eee;
+    border-color: @dark-gray;
+    background: @dark-gray;
+    &:hover {
+      background: lighten(@dark-gray, 5%);
+    }
+    &:active, &.active {
+      background: lighten(@dark, 10%);
+    }
+  }
+}
+
+// (button|groups)
+.button-group {
+  display: inline-flex;
+  border-radius: @button-border-radius;
+
+  &.full-width {
+    display: flex;
+    .button, .new-button {
+      flex-grow: 1;
+    }
+  }
+
+  &.gray {
+    .button, .new-button {
+      border-right-color: darken(@dark-gray, 1%);
+    }
+  }
+
+  &.dark {
+    .button, .new-button {
+      border-right-color: #444;
+    }
+  }
+
+  &.light {
+    .button, .new-button {
+      border-right-color: #fff;
+    }
+  }
+
+  .drop-shadow;
+  .button, .new-button {
+    border-radius: 0px;
+    border-left: none;
+    border-right: 1px solid;
+
+    // Define rounded corners for button groups
+    &:first-child {
+      padding-left: 10px;
+      border-radius: @button-border-radius 0 0 @button-border-radius;
+    }
+    &:last-child {
+      border-right: none;
+      padding-right: 10px;
+      border-radius: 0 @button-border-radius @button-border-radius 0;
+    }
+    &:only-child {
+      border-right: none;
+      padding-left: 10px;
+      padding-right: 10px;
+      border-radius: @button-border-radius;
+    }
+
+    .icon {
+      vertical-align: middle;
+      margin-top: -8px;
+      margin-bottom: -8px;
+      display: inline-block;
+      svg {
+        .svg(@w: 18px, @color: white);
+      }
+    }
+  }
+}
+
+.inspect-button {
+  @button-grey: #b3b4b4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  border: 1px solid @button-grey;
+  margin: 0px auto;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+
+  .inspect-icon {
+    svg {
+      path {
+        transition: fill 0.2s ease;
+        fill: @button-grey !important;
+      }
+    }
+  }
+}
+
+.issue-card {
+  position: relative;
+  border: 1px solid white;
+  border-radius: 4px;
+  padding: 8px;
+  margin: 0px 5px 10px 5px;
+  text-align: center;
+  width: 135px;
+  height: 220px;
+  white-space: nowrap;
+  box-sizing: border-box;
+  background: white;
+  .box-shadow(0px 0px 5px rgba(0,0,0,0.4));
+  .noselect;
+
+  .category, .domain {
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: @title-grey;
+  }
+
+  .impact-time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90px;
+    height: 90px;
+    border-radius: 45px;
+    margin: 8px auto;
+    font-size: 16px;
+    color: white;
+  }
+
+  .impact-bar {
+    background: @impact-orange;
+    height: 10px;
+  }
+
+  .inspect-button {
+    margin-top: 12px;
+  }
+}
+
+// The UI is composed of "widgets" with orange-underlined titles
+// above and content below
+.widget-title {
+  display: flex;
+  border-bottom: 2px solid @orange-primary-dark;
+  color: @orange-primary-dark;
+  align-items: center;
+  height: 30px;
+  margin-bottom: 10px;
+  
+  .title {
+    font-size: 18px;
+    padding-left: 10px;
+  }
+
+  .help-button {
+    display: none;
+    position: relative;
+    top: -3px;
+    padding-left: 4px;
+    svg {
+      .svg(@color: #d0d2d3, @w: 18px);
+    }
+  }
+}
+
+// widget content doesn't require any specific styling;
+// it's just a class name you can use to semantically
+// distinguish the content of the widget from its title
+.widget-content {}
