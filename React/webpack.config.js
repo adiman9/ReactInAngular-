@@ -20,8 +20,8 @@ module.exports = {
     ]
   },
   output: {
-    path: __dirname + "/src/",
-    filename: "client.min.js"
+    path: __dirname + "/build/",
+    filename: "reactClient.min.js"
   },
   plugins: debug ? [] : [
     new webpack.optimize.DedupePlugin(),

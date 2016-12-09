@@ -8,6 +8,8 @@ import {AuthSvc} from "./src/services/auth-svc.js";
 
 import {HomeCtrl} from "./src/controllers/home-ctrl.js";
 
+import {ReactApp} from './src/directives/react-app.js';
+
 var _ = window._;
 var $ = window.$;
 
@@ -47,6 +49,7 @@ app.config(function($routeProvider, $locationProvider, $httpProvider) {
 
 app.directive('svgImage', SvgImageDir);
 app.directive('inlineReplace', InlineReplaceDir);
+app.directive('reactApp', ReactApp);
 
 // --------------------------------------------------------------------------
 // Services

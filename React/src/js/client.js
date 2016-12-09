@@ -5,7 +5,7 @@ import { Provider } from "react-redux"
 import Layout from "./components/Layout"
 import store from "./store"
 
-const app = document.getElementById('app')
+const app = document.getElementById('ReactApp')
 
 ReactDOM.render(
   <Provider store={store}>
