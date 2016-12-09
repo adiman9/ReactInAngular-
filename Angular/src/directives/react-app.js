@@ -1,9 +1,15 @@
 export const ReactApp = () => {
   return {
     restrict: 'E',
-    templateUrl: 'src/dom/react-component.html',
+    template: '<div id="ReactApp"></div>',
     link($scope, $element, $attrs) {
       console.log('inside react app directive');        
+
+      var script = document.createElement('script');
+
+      script.setAttribute('src','reactClient.min.js');
+
+      document.head.appendChild(script);
     }
   }
 };
