@@ -1,6 +1,10 @@
 import React from "react"
 import { connect } from "react-redux"
 
+import Tweet from "./Tweet.js"
+import Footer from "./Footer.js"
+import Header from "./Header.js"
+
 import { fetchUser } from "../actions/userActions"
 import { fetchTweets } from "../actions/tweetsActions"
 
@@ -27,11 +31,15 @@ export default class Layout extends React.Component {
       return <button onClick={this.fetchTweets.bind(this)}>load tweets</button>
     }
 
-    const mappedTweets = tweets.map(tweet => <li>{tweet.text}</li>)
+    const mappedTweets = tweets.map(tweet => {
+        return <Tweet text={tweet.text} key={tweet.id} />
+    })
 
     return <div>
+      <Header />
       <h1>{user.name}</h1>
       <ul>{mappedTweets}</ul>
+      <Footer />
     </div>
   }
 }
